@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Unit_Converter</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\UniversityPhysics\UniversityPhysics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UniversityPhysics">
+      <HintPath>..\..\..\..\Desktop\Visual Code Studio Files\C# Files\UniversityPhysics\bin\Debug\netcoreapp3.0\UniversityPhysics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
