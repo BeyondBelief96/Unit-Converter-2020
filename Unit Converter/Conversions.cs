@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;    
 using System.Text;
 using UniversityPhysics.Enums;
 using UniversityPhysics.UnitsAndConstants;
@@ -10,36 +11,57 @@ namespace Unit_Converter
     {
         public static void MassConversions(double massvalue, MassMeasure unittype)
         {
+            var enumcount = Enum.GetNames(typeof(MassMeasure)).Length;
             Mass m = new Mass(massvalue, unittype);
-            Console.WriteLine($"Here are the conversions for  {massvalue} {unittype.ToString()}'s:\n\n" +
-                $"{Enum.GetName(typeof(MassMeasure), 0)} = {m.Kilograms}\n" +
-                $"{Enum.GetName(typeof(MassMeasure), 1)} = {m.SolarMasses}\n" +
-                $"{Enum.GetName(typeof(MassMeasure), 2)} = {m.AMUs}\n" +
-                $"{Enum.GetName(typeof(MassMeasure), 3)} = {m.eV}\n" +
-                $"{Enum.GetName(typeof(MassMeasure), 4)} = {m.MeV}\n" +
-                $"{Enum.GetName(typeof(MassMeasure), 5)} = {m.PlanckMasses}\n");
+            Type type = m.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            Console.WriteLine($"Here are the conversions for  {massvalue} {unittype.ToString()}'s:\n\n");
+            for (int i = 0; i < enumcount; i++)
+            {
+                Console.WriteLine($"{Enum.GetName(typeof(MassMeasure), i)} = {properties[i].GetValue(m)}\n");
+            }
+
         }
 
         public static void EnergyConversions(double eValue, EnergyMeasure unittype)
         {
+            var enumcount = Enum.GetNames(typeof(EnergyMeasure)).Length;
             Energy e = new Energy(eValue, unittype);
-            Console.WriteLine($"Here are the conversions for  {eValue} {unittype.ToString()}'s:\n\n" +
-                $"{Enum.GetName(typeof(EnergyMeasure), 0)} = {e.Joules}\n" +
-                $"{Enum.GetName(typeof(EnergyMeasure), 1)} = {e.ElectronVolts}\n" +
-                $"{Enum.GetName(typeof(EnergyMeasure), 2)} = {e.MegaElectronVolts}\n" +
-                $"{Enum.GetName(typeof(EnergyMeasure), 3)} = {e.KilowattHours}\n");
+            Type type = e.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            Console.WriteLine($"Here are the conversions for  {eValue} {unittype.ToString()}'s:\n\n");
+            for (int i = 0; i < enumcount; i++)
+            {
+                Console.WriteLine($"{Enum.GetName(typeof(EnergyMeasure), i)} = {properties[i].GetValue(e)}\n");
+            }
 
         }
 
         public static void TemperatureConversions(double tempvalue, TemperatureType unittype)
         {
+            var enumcount = Enum.GetNames(typeof(TemperatureType)).Length;
             Temperature T = new Temperature(tempvalue, unittype);
-            Console.WriteLine($"Here are the conversions for  {tempvalue} {unittype.ToString()}'s:\n\n" +
-                $"{Enum.GetName(typeof(TemperatureType), 0)} = {T.Fahrenheit}\n" +
-                $"{Enum.GetName(typeof(TemperatureType), 1)} = {T.Celsius}\n" +
-                $"{Enum.GetName(typeof(TemperatureType), 2)} = {T.Kelvin}\n");
+            Type type = T.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            Console.WriteLine($"Here are the conversions for {tempvalue} {unittype.ToString()}:\n\n");
+            for (int i = 0; i < enumcount; i++)
+            {
+                    Console.WriteLine($"{Enum.GetName(typeof(TemperatureType), i)} = {properties[i].GetValue(T)}\n");
+            }
 
+        }
 
+        public static void LengthConversions(double lengthvalue, LengthMeasure unittype)
+        {
+            var enumcount = Enum.GetNames(typeof(LengthMeasure)).Length;
+            Length L = new Length(lengthvalue, unittype);
+            Type type = L.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            Console.WriteLine($"Here are the conversions for  {lengthvalue} {unittype.ToString()}'s:\n\n");
+            for (int i = 0; i < enumcount; i++)
+            {
+                Console.WriteLine($"{Enum.GetName(typeof(LengthMeasure), i)} = {properties[i].GetValue(L)}\n");
+            }
         }
 
         
